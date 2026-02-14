@@ -1,0 +1,82 @@
+{
+  "name": "email-sender-pro",
+  "version": "1.0.0",
+  "description": "Email Sender Pro - Professional Email Marketing Desktop Application",
+  "main": "main/main.js",
+  "scripts": {
+    "dev": "concurrently \"npm run next-dev\" \"npm run electron-dev\"",
+    "next-dev": "next dev -p 3000",
+    "electron-dev": "wait-on http://localhost:3000 && npx electron .",
+    "build": "next build && electron-builder",
+    "start": "electron .",
+    "package": "electron-builder --win",
+    "package:exe": "electron-builder --win nsis",
+    "package:zip": "electron-builder --win zip"
+  },
+  "keywords": [
+    "email",
+    "sender",
+    "marketing",
+    "electron",
+    "nextjs"
+  ],
+  "author": "Email Sender Pro Team",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "electron-store": "^8.1.0",
+    "framer-motion": "^10.16.16",
+    "papaparse": "^5.4.1",
+    "react-hot-toast": "^2.4.1",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "chart.js": "^4.4.1",
+    "concurrently": "^8.2.2",
+    "electron": "^28.2.0",
+    "electron-builder": "^24.13.3",
+    "electron-packager": "^17.1.2",
+    "next": "^14.0.4",
+    "nodemailer": "^6.9.7",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.2.0",
+    "react-image-crop": "^11.0.10",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.emailsender.pro",
+    "productName": "Email Sender Pro",
+    "asar": true,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main/**/*",
+      "out/**/*",
+      "public/**/*",
+      "package.json",
+      "node_modules/electron-store/**/*",
+      "!node_modules/electron/**/*"
+    ],
+    "win": {
+      "forceCodeSigning": false,
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "public/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "deleteAppDataOnUninstall": true
+    }
+  }
+}
