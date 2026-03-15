@@ -13,7 +13,7 @@ export async function POST(request) {
         }
 
         // Forward the request to the InfinityFree server
-        const response = await fetch('https://email-sender.wuaze.com/api/activate.php', {
+        const response = await fetch('http://monzya.getenjoyment.net/api/activate.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
